@@ -9,7 +9,7 @@
 <body>
 
     <div class="container">
-        <h1>Chicken Pox</h1>
+        <h1 class ="col-lg-offset-4 col-lg-6">Chicken Pox</h1>
         <hr/>
         <div class ="navbar">
             <ul class="nav nav-tabs col-lg-offset-3 col-lg-6">
@@ -18,11 +18,8 @@
                 <li role="presentation" class="active"><a href="test2.html">Test - 2</a></li>
             </ul>
         </div>
-    </div>
-        <div id="game">
-
-        </div>
-    </div>
+        <div  class="col-lg-offset-1 col-lg-10" id="game" />
+    </div >
 
     <script type="text/javascript" src="js/phaser.min.js"></script>
     <script src="js/jquery-2.1.1.min.js"></script>
@@ -33,38 +30,29 @@
 
 <script type="text/javascript">
 
-    var game = new Phaser.Game(800, 600, Phaser.AUTO, 'game', { preload: preload, create: create, update: update });
+    var game = new Phaser.Game(900, 500, Phaser.AUTO, 'game', { preload: preload, create: create, update: update });
 
     function preload() {
 
-        game.load.image('sky', 'assets/sky.png');
-        game.load.image('ground', 'assets/platform.png');
         game.load.image('star', 'assets/star.png');
-        game.load.image('starsbg', 'assets/Sully800x600background.png')
-        game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
+        game.load.image('starsbg', 'assets/Background-2.jpg') // 2048 x 1536
         game.load.spritesheet('chicken', 'assets/chicken_spritesheet_75x90.png', 75, 90, 4, -5);
     }
 
     function create() {
 
         game.physics.startSystem(Phaser.Physics.NINJA);
-        game.add.sprite(0, 0, 'starsbg');
+        game.add.sprite(-400, -400, 'starsbg');
 
-        //  The platforms group contains the ground and the 2 ledges we can jump on
-        platforms = game.add.group();
-
-        //  We will enable physics for any object that is created in this group
-        platforms.enableBody = true;
-
-        // Here we create the ground.
-        var ground = platforms.create(0, game.world.height, 'ground');
-        // var ground = platforms.create(0, game.world.height - 64, 'ground');
-
-        //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-        // ground.scale.setTo(2, 2);
-
-        //  This stops it from falling away when you jump on it
-        ground.body.immovable = true;
+//        // Here we create the ground.
+//        var ground = platforms.create(0, game.world.height, 'ground');
+//        // var ground = platforms.create(0, game.world.height - 64, 'ground');
+//
+//        //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
+//        // ground.scale.setTo(2, 2);
+//
+//        //  This stops it from falling away when you jump on it
+//        ground.body.immovable = true;
 
         // The chicken and its settings
         chicken = game.add.sprite(game.world.width / 2, 0, 'chicken');
