@@ -301,8 +301,8 @@ function newPlanet(game){
         planet.body.data.gravityScale = 1;
     } else{
         game.physics.arcade.enable(planet);
-        planet.body.velocity.x = randomNum(100) - 5;
-        planet.body.velocity.y = randomNum(100) - 5;
+        planet.body.velocity.x = randomNum(100) - 50;
+        planet.body.velocity.y = randomNum(100) - 50;
         planet.body.maxVelocity.set(5);
 //        planet.body.minVelocity.set(-15);
     }
@@ -356,22 +356,22 @@ function screenWrap (sprite) {
 
     function screenWrap2 (sprite) {
 
-        if (sprite.body.position.x < 0 - sprite.width * 2)
+        if (sprite.body.position.x < 0 - sprite.width * 2 * sprite.scale)
         {
-            sprite.body.position.x = game.world.width / 2;
+            sprite.body.position.x = game.world.width + sprite.width * 1.1 * sprite.scale;
         }
-        else if (sprite.body.position.x > game.world.width + sprite.width * 2)
+        else if (sprite.body.position.x > game.world.width + sprite.width * 2 * sprite.scale)
         {
-            sprite.body.position.x = game.world.width / 2;
+            sprite.body.position.x = 0 - sprite.width * 1.1 * sprite.scale;
         }
 
-        if (sprite.body.position.y < 0 - sprite.height * 2)
+        if (sprite.body.position.y < 0 - sprite.height * 2 * sprite.scale)
         {
-            sprite.body.position.y = game.world.height / 2;
+            sprite.body.position.y = game.world.height  + sprite.height * 1.1 * sprite.scale;
         }
-        else if (sprite.body.position.y > game.world.height + sprite.height * 2)
+        else if (sprite.body.position.y > game.world.height + sprite.height * 2 * sprite.scale)
         {
-            sprite.body.position.y = game.world.height / 2;
+            sprite.body.position.y = 0 - sprite.height * 1.1 * sprite.scale;
         }
 
     }
