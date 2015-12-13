@@ -122,15 +122,6 @@ function create() {
     stars.enableBody = true;
 
     doGod(stars);
-    
-    
-    
-    // add some bad guys
-    amoebas = game.add.group();
-    amoebas.enableBody = true;
-    doDarwin(amoebas);
-    amoebas.callAll('animations.add', 'animations', 'jiggle', [0, 1, 0, 2], 10, true)
-    amoebas.callAll('play', null, 'jiggle');
 
     //  The score
     scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFF' });
@@ -138,6 +129,18 @@ function create() {
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
+    
+    
+    
+    // add some bad guys
+    amoebas = game.add.group();
+    amoebas.enableBody = true;
+    doDarwin(amoebas);
+    var frameNames = [0, 1, 0, 2];
+    amoebas.callAll('animations.add', 'animations', 'jiggle', frameNames, 10, true)
+//    amoeba.animations.add('jiggle', [0, 1, 0, 2], 10, true);
+    amoebas.callAll('play', null, 'swim');
+//    amoeba.animations.play('right');
     
 }
 
@@ -149,19 +152,9 @@ function updateArcade() {
     
     //  Checks to see if the chicken overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(chicken, stars, collectStar, null, this);
-//    game.physics.arcade.overlap(chicken, planetGroup, planetThing, null, this);
+    game.physics.arcade.overlap(chicken, planetGroup, planetThing, null, this);
     game.physics.arcade.overlap(chicken, amoebas, smackDown, null, this);
 
-
-    // Update planets and ensure wrapping
-
-    planetGroup.forEach(function(planet) {
-        var x = planet.body.velocity.x;
-        var y = planet.body.velocity.y;
-        screenWrap(planet);
-        planet.body.velocity.x = x;
-        planet.body.velocity.y = y;
-    });
 
     if (cursors.left.isDown && cursors.right.isDown) {
         game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed + 40, chicken.body.velocity);
@@ -171,6 +164,9 @@ function updateArcade() {
     }
     else if (cursors.left.isDown)
     {
+        //  Move to the left
+        // chicken.body.velocity.x = -150;
+        // chicken.body.velocity.y = -50;
         game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed + 20, chicken.body.velocity);
         game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 100, chicken.body.acceleration); // (Math.Pi/2)
         chicken.body.angularVelocity += -20;
@@ -178,6 +174,9 @@ function updateArcade() {
     }
     else if (cursors.right.isDown)
     {
+        //  Move to the right
+//        chicken.body.velocity.x = 150;
+//        chicken.body.velocity.y = -50;
         game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed + 20, chicken.body.velocity);
         game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 100, chicken.body.acceleration); // (Math.Pi/2)
         chicken.body.angularVelocity += 20;
@@ -196,8 +195,6 @@ function updateArcade() {
     
     
 }
-
-
 
 function planetThing(chicken, planet){
     planet.body.velocity.x = chicken.body.velocity.x * 2;
@@ -242,20 +239,12 @@ function doGod (stars) {
     }
 }
     
-function doDarwin (amoebas) {
+function doDarwin (amoebase) {
     // Make some amoebas from the aether
     for (var i = 0; i < 10; i++)
     {
         //  Create a star inside of the 'stars' group
         var amoeba = amoebas.create(i * 70, 10+Math.random()*(game.world.height-20), 'amoeba');
-        amoeba.body.collideWorldBounds = true;
-        amoeba.body.bounce.setTo(1, 1);
-        amoeba.body.velocity.x = Math.random()*200+50;
-        amoeba.body.velocity.y = Math.random()*200+50;
-        amoeba.body.velocity.x *= Math.random()<0.5 ? -1 : 1;
-        amoeba.body.velocity.y *= Math.random()<0.5 ? -1 : 1;
-        amoeba.body.immovable = true;
-        amoeba.body.maxVelocity.set(80);
 
     }
 }
@@ -301,36 +290,12 @@ function newPlanet(game){
         planet.body.data.gravityScale = 1;
     } else{
         game.physics.arcade.enable(planet);
-        planet.body.velocity.x = randomNum(10) - 5;
-        planet.body.velocity.y = randomNum(10) - 5;
-        planet.body.maxVelocity.set(5);
-//        planet.body.minVelocity.set(-15);
+        planet.body.velocity.x = randomNum(4) - 2;
+        planet.body.velocity.y = randomNum(4) - 2;
     }
 
 }
 
-
-function screenWrap (sprite) {
-
-    if (sprite.x < 0 - sprite.width)
-    {
-        sprite.x = game.world.width + sprite.width - 1;
-    }
-    else if (sprite.x > game.world.width + sprite.width)
-    {
-        sprite.x = 0 - sprite.width + 1;
-    }
-
-    if (sprite.y < 0 - sprite.height)
-    {
-        sprite.y = game.world.height + sprite.height - 1;
-    }
-    else if (sprite.y > game.world.height + sprite.height)
-    {
-        sprite.y = 0 - sprite.height + 1;
-    }
-
-}
 </script>
 
 </body>
