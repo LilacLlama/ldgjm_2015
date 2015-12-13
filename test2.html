@@ -65,7 +65,7 @@
         //  chicken physics properties. Give the little guy a slight bounce.
         chicken.body.bounce.y = 0.2;
         chicken.body.gravity.y = 300;
-        chicken.body.collideWorldBounds = true;
+//        chicken.body.collideWorldBounds = true;
         chicken.body.allowRotation = true;
 
         //  Our two animations, walking left and right.
@@ -157,8 +157,8 @@
 
     function updateBackground(chicken, background){
 
-        background.body.velocity.x =  - chicken.body.velocity.x / 25;
-        background.body.velocity.y = - chicken.body.velocity.y / 25;
+        background.body.velocity.x =  - chicken.body.velocity.x / 100;
+        background.body.velocity.y = - chicken.body.velocity.y / 100;
 
     }
 
