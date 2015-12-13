@@ -133,7 +133,7 @@ function create() {
     amoebas.callAll('play', null, 'jiggle');
 
     //  The score
-    scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFF' });
+    scoreText = game.add.text(16, 16, 'Stars Gulped: 0', { fontSize: '32px', fill: '#FFF' });
     scoreText.fixedToCamera = true;
 
     //  Our controls.
@@ -213,8 +213,8 @@ function collectStar (chicken, star) {
     star.kill();
 
     //  Add and update the score
-    score += 10;
-    scoreText.text = 'Score: ' + score;
+    score += 1;
+    scoreText.text = 'Stars Gulped: ' + score;
     
     gulp.play();
     
