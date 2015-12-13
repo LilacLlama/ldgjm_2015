@@ -29,13 +29,14 @@
 
 <script type="text/javascript">
 
-    var game = new Phaser.Game(900, 500, Phaser.AUTO, 'game', { preload: preload, create: create, update: update });
+    var game = new Phaser.Game(900, 500, Phaser.AUTO, 'game', { preload: preload, create: create, update: updateArcade });
     var planetSprites = [
 //        { sheet:'sm_planet',  frames: 784, size:25, assets:'assets/planet_background1.png'},
         { sheet:'med_planet', frames: 196, size:50, assets:'assets/med_planets.png'},
         { sheet:'lg_planet',  frames:  49, size:100, assets:'assets/large_planets.png'}]
 
     var planetGroup;
+    var p2On = false;
 
 var score = 0;
     
@@ -45,42 +46,36 @@ function preload() {
         game.load.spritesheet(planetSprites[i].sheet, planetSprites[i].assets, planetSprites[i].size, planetSprites[i].size);
     }
 
-    game.load.image('sky', 'assets/sky.png');
-    game.load.image('ground', 'assets/platform.png');
     game.load.image('star', 'assets/star.png');
-    game.load.image('starsbg', 'assets/Sully800x600background.png')
-    game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
     game.load.spritesheet('chicken', 'assets/chicken_spritesheet_75x90.png', 75, 90, 4, -5);
-//    game.load.audio('chickenmusic', 'assets/ChickenFloatingThroughSpace.mp3');
     game.load.audio('chickenmusic', 'assets/peg.mp3');
-
-    game.load.image('stars', 'assets/starsglow1.gif') // 2048 x 1536
+    game.load.image('stars', 'assets/starsglow1.gif')
 }
-    
-//function render() {
-////    game.debug.body();
-//}
 
 function create() {
 
-    game.stage.backgroundColor = '#2d2d2d';
-    game.physics.startSystem(Phaser.Physics.P2JS);
-
-    game.physics.p2.restitution = 0.8;
-    game.physics.p2.friction = 0;
-    game.physics.p2.applyGravity = true;
-
-
-    var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial');
-    var worldMaterial = game.physics.p2.createMaterial('worldMaterial');
-    var contactMaterial = game.physics.p2.createContactMaterial(spriteMaterial, worldMaterial, { restitution: 1.0 });
-
-    game.physics.p2.setWorldMaterial(worldMaterial);
-
-    bgtile = game.add.tileSprite(0, 0, game.stage.bounds.width, game.stage.bounds.height, 'stars');
-
-//        game.add.tileSprite(0, 0, 200, 200, 'stars');
     game.world.setBounds(0, 0, 2000, 2000);
+
+    if(p2On) {
+        game.physics.startSystem(Phaser.Physics.P2JS);
+        game.physics.p2.restitution = 0.8;
+        game.physics.p2.friction = 0;
+        game.physics.p2.applyGravity = true;
+
+
+        var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial');
+        var worldMaterial = game.physics.p2.createMaterial('worldMaterial');
+        var contactMaterial = game.physics.p2.createContactMaterial(spriteMaterial, worldMaterial, { restitution: 1.0 });
+
+        game.physics.p2.setWorldMaterial(worldMaterial);
+    } else {
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    }
+
+
+    bgtile = game.add.tileSprite(0, 0, game.world.width, game.world.height, 'stars');
+
     planetGroup = game.add.group();
 
     for(i = 0; i < randomNum(100)+50; i++){
@@ -88,28 +83,27 @@ function create() {
     }
 
 
-//    game.physics.startSystem(Phaser.Physics.ARCADE);
-    // Add background image
-//    game.add.sprite(0, 0, 'starsbg');
-    
+
     // Start the music!  Yes, we should make this optional, but hey... use your volume button.
     music = game.add.audio('chickenmusic');
     music.play();
     music.onStop.add(rePlay, this);
-    // game.sound.setDecodedCallback(music, rePlay, this);
-    
-    // The chicken and its settings
-    chicken = game.add.sprite(game.world.width / 2, game.world.height-20, 'chicken');
-    
-     //  We need to enable physics on the chicken
-    game.physics.arcade.enable(chicken);
 
+
+    // The chicken and its settings
+    chicken = game.add.sprite(game.world.width / 2, game.world.height - 20, 'chicken');
+     //  We need to enable physics on the chicken
+    p2On ? game.physics.p2.enable(chicken) : game.physics.arcade.enable(chicken);
     game.camera.follow(chicken);
 
     //  chicken physics properties. Give the little guy a slight bounce from the walls
     chicken.body.bounce.y = 0.4;
     chicken.body.collideWorldBounds = true;
     chicken.body.allowRotation = true;
+    chicken.body.drag.set(50);
+    chicken.body.maxVelocity.set(200);
+
+
 
     //  Our two animations, walking left and right.
     chicken.animations.add('left', [0, 1], 10, true);
@@ -117,11 +111,9 @@ function create() {
     chicken.animations.add('both', [1,2], 10, true);    
     
     
-    chicken.anchor.set(0.5)
+    chicken.anchor.set(0.5);
     
-    chicken.body.drag.set(50);
-    chicken.body.maxVelocity.set(200);
-    
+
     //  Finally some stars to collect
     stars = game.add.group();
 
@@ -138,11 +130,16 @@ function create() {
     
 }
 
-function update() {
+function updateP2(){
+
+}
+
+function updateArcade() {
     
     //  Checks to see if the chicken overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(chicken, stars, collectStar, null, this);
-    
+    game.physics.arcade.overlap(chicken, planetGroup, planetThing, null, this);
+
 
     if (cursors.left.isDown && cursors.right.isDown) {
         game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed + 40, chicken.body.velocity);
@@ -183,7 +180,15 @@ function update() {
     
     
 }
-    
+
+function planetThing(chicken, planet){
+    planet.body.velocity.x = chicken.body.velocity.x * 2;
+    planet.body.velocity.y = chicken.body.velocity.y * 2;
+    chicken.body.velocity.x /= 2;
+    chicken.body.velocity.y /= 2;
+
+}
+
 function collectStar (chicken, star) {
     
     // Removes the star from the screen
@@ -242,15 +247,23 @@ function newPlanet(game){
     //  Set the scale of the sprite to the random value
     planet.scale.setTo(rand, rand);
 
-    game.physics.p2.enable(planet);
 
-    planet.body.dynamic = true;
+    if(p2On){
+        game.physics.p2.enable(planet);
 
-    //  Give the kinematic objects some velocity
+        planet.body.dynamic = true;
+
+        //  Give the kinematic objects some velocity
 //        planet.body.velocity.x = randomNum(10) - 5;
 //        planet.body.velocity.x = randomNum(10) - 5;
-    planet.body.mass = 50;
-    planet.body.data.gravityScale = 1;
+        planet.body.mass = 50;
+        planet.body.data.gravityScale = 1;
+    } else{
+        game.physics.arcade.enable(planet);
+        planet.body.velocity.x = randomNum(4) - 2;
+        planet.body.velocity.y = randomNum(4) - 2;
+    }
+
 }
 
 </script>
