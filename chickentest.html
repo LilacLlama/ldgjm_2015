@@ -1,98 +1,120 @@
-<!doctype html> 
-<html lang="en"> 
-<head> 
-	<meta charset="UTF-8" />
-	<title>ChickenPox study 1 by Chip</title>
-    <!-- This borrows heavily from the phaser tutorials -->
-	<script type="text/javascript" src="js/phaser.min.js"></script>
-    <style type="text/css">
-        body {
-            margin: 0;
-        }
-    </style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChickenPox - Procedural World</title>
+    <link href="css/bootstrap-cyborg.css" rel="stylesheet">
+    <link href="assets/icon.png" rel="shortcut icon">
 </head>
 <body>
 
+<div class="container">
+    <!--        <h1 class ="col-lg-offset-4 col-lg-6">Chicken Pox</h1>
+            <hr/>
+            <div class ="navbar">
+                <ul class="nav nav-tabs col-lg-offset-3 col-lg-6">
+                    <li role="presentation"><a href="index.html">Home</a></li>
+                    <li role="presentation"><a href="test.html">Test - 1</a></li>
+                    <li role="presentation" class="active"><a href="test2.html">Test - 2</a></li>
+                </ul>
+            </div> -->
+    <div  class="col-lg-offset-1 col-lg-10" id="game" />
+</div >
+
+<script type="text/javascript" src="js/phaser.min.js"></script>
+<script src="js/jquery-2.1.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
+
 <script type="text/javascript">
 
-var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update, render: render });
+    var game = new Phaser.Game(900, 500, Phaser.AUTO, 'game', { preload: preload, create: create, update: updateArcade });
+    var planetSprites = [
+//        { sheet:'sm_planet',  frames: 784, size:25, assets:'assets/planet_background1.png'},
+        { sheet:'med_planet', frames: 196, size:50, assets:'assets/med_planets.png'},
+        { sheet:'lg_planet',  frames:  49, size:100, assets:'assets/large_planets.png'}]
+
+    var planetGroup;
+    var p2On = false;
+
 var score = 0;
-var button;
-    
-function render () {
-
-    // game.debug.text('Click / Tap to go fullscreen', 270, 16);
-    // game.debug.text('Click / Tap to go fullscreen', 0, 16);
-
-    game.debug.inputInfo(32, 32);
-    // game.debug.pointer(game.input.activePointer);
-
-}
-    
     
 function preload() {
-    this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-    //this.scale.pageAlignHorizontally = true;
-    this.scale.pageAlignVertically = true;
-    this.scale.setScreenSize( true );
-    game.load.image('sky', 'assets/sky.png');
-    game.load.image('ground', 'assets/platform.png');
-    game.load.image('star', 'assets/star.png');
-    game.load.image('starsbg', 'assets/Sully800x600background.png')
-    game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
-    game.load.spritesheet('chicken', 'assets/chicken_spritesheet_75x90.png', 75, 90, 4, -5);
-//    game.load.audio('chickenmusic', 'assets/ChickenFloatingThroughSpace.mp3');
-    game.load.audio('chickenmusic', 'assets/peg.mp3');
-    game.load.audio('gulp', 'assets/gulp.m4a')
-}
     
-//function render() {
-////    game.debug.body();
-//}
+    for(i = 0; i < planetSprites.length; i++){
+        game.load.spritesheet(planetSprites[i].sheet, planetSprites[i].assets, planetSprites[i].size, planetSprites[i].size);
+    }
+
+    game.load.image('star', 'assets/star.png');
+    game.load.spritesheet('chicken', 'assets/chicken_spritesheet_75x90.png', 75, 90, 4, -5);
+    game.load.spritesheet('amoeba', 'assets/Amoeba_spritesheet_124x80x3.png', 124, 80);
+    game.load.audio('chickenmusic', 'assets/peg.mp3');
+    game.load.image('stars', 'assets/starsglow1.gif');
+    game.load.audio('gulp', 'assets/gulp.m4a');
+}
 
 function create() {
-    
-    game.physics.startSystem(Phaser.Physics.ARCADE);
-    // Add background image
-    game.add.sprite(0, 0, 'starsbg');
-    game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
-//    game.input.onDown.add(goFull, this);
-    
+
+    game.world.setBounds(0, 0, 2000, 2000);
+
+    if(p2On) {
+        game.physics.startSystem(Phaser.Physics.P2JS);
+        game.physics.p2.restitution = 0.8;
+        game.physics.p2.friction = 0;
+        game.physics.p2.applyGravity = true;
+
+
+        var spriteMaterial = game.physics.p2.createMaterial('spriteMaterial');
+        var worldMaterial = game.physics.p2.createMaterial('worldMaterial');
+        var contactMaterial = game.physics.p2.createContactMaterial(spriteMaterial, worldMaterial, { restitution: 1.0 });
+
+        game.physics.p2.setWorldMaterial(worldMaterial);
+    } else {
+        game.physics.startSystem(Phaser.Physics.ARCADE);
+
+    }
+
+
+    bgtile = game.add.tileSprite(0, 0, game.world.width, game.world.height, 'stars');
+
+    planetGroup = game.add.group();
+
+    for(i = 0; i < randomNum(100)+50; i++){
+        newPlanet(game);
+    }
+
+
+
     // Start the music!  Yes, we should make this optional, but hey... use your volume button.
     music = game.add.audio('chickenmusic');
-    music.volume -= 0.3;
+    music.volume -= 0.25;
     music.play();
     music.onStop.add(rePlay, this);
-    // game.sound.setDecodedCallback(music, rePlay, this);
-    
     gulp = game.add.audio('gulp');
+    gulp.volume += 0.5;
 
-    
-//    button = game.add.button(game.world.width - 50, 30, 'ground  ', goFull, this, 2, 1, 0);
-//    button.visible = true;
-    
+
     // The chicken and its settings
-    chicken = game.add.sprite(game.world.width / 2, game.world.height-20, 'chicken');
-    
+    chicken = game.add.sprite(game.world.width / 2, game.world.height - 20, 'chicken');
      //  We need to enable physics on the chicken
-    game.physics.arcade.enable(chicken);
+    p2On ? game.physics.p2.enable(chicken) : game.physics.arcade.enable(chicken);
+    game.camera.follow(chicken);
 
     //  chicken physics properties. Give the little guy a slight bounce from the walls
     chicken.body.bounce.y = 0.4;
     chicken.body.collideWorldBounds = true;
     chicken.body.allowRotation = true;
-
+    chicken.body.drag.set(50);
+    chicken.body.maxVelocity.set(500);
+    
     //  Our two animations, walking left and right.
     chicken.animations.add('left', [0, 1], 10, true);
     chicken.animations.add('right', [0, 2], 10, true);
-    chicken.animations.add('both', [1,2], 10, true);
+    chicken.animations.add('both', [1,2], 10, true);        
+    chicken.anchor.set(0.5);   // So that the chicken rotates around its center, not its corner
     
-    
-    chicken.anchor.set(0.5)
-    
-    chicken.body.drag.set(50);
-    chicken.body.maxVelocity.set(200);
-    
+
     //  Finally some stars to collect
     stars = game.add.group();
 
@@ -103,18 +125,37 @@ function create() {
 
     //  The score
     scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFF' });
+    scoreText.fixedToCamera = true;
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
     
+    
+    
+    // add some bad guys
+    amoebas = game.add.group();
+    amoebas.enableBody = true;
+    doDarwin(amoebas);
+    var frameNames = [0, 1, 0, 2];
+    amoebas.callAll('animations.add', 'animations', 'jiggle', frameNames, 10, true)
+//    amoeba.animations.add('jiggle', [0, 1, 0, 2], 10, true);
+    amoebas.callAll('play', null, 'swim');
+//    amoeba.animations.play('right');
+    
 }
 
-function update() {
+function updateP2(){
+
+}
+
+function updateArcade() {
     
     //  Checks to see if the chicken overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(chicken, stars, collectStar, null, this);
-    
-    game.input.onDown.add(goFull, this);
+    game.physics.arcade.overlap(chicken, planetGroup, planetThing, null, this);
+    game.physics.arcade.overlap(chicken, amoebas, smackDown, null, this);
+
+
     if (cursors.left.isDown && cursors.right.isDown) {
         game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed + 40, chicken.body.velocity);
         game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 100, chicken.body.acceleration); // (Math.Pi/2)
@@ -154,24 +195,38 @@ function update() {
     
     
 }
-    
+
+function planetThing(chicken, planet){
+    planet.body.velocity.x = chicken.body.velocity.x * 2;
+    planet.body.velocity.y = chicken.body.velocity.y * 2;
+    chicken.body.velocity.x /= 2;
+    chicken.body.velocity.y /= 2;
+
+}
+
 function collectStar (chicken, star) {
     
     // Removes the star from the screen
     star.kill();
 
-    gulp.play();
-    gulp.volume += 0.5;
-    
     //  Add and update the score
     score += 10;
     scoreText.text = 'Score: ' + score;
     
+    gulp.play();
+    
     stars.create(10+Math.random()*(game.world.width-20), 10+Math.random()*(game.world.height-20), 'star');
     
-    //  Uncomment the next line for infinite stars
-    // if(Math.random() > 0.25) stars.create(10+Math.random()*(game.world.width-20), 10+Math.random()*(game.world.height-20), 'star');
+    if(Math.random() > 0.25) stars.create(10+Math.random()*(game.world.width-20), 10+Math.random()*(game.world.height-20), 'star');
 
+}
+    
+
+function smackDown (chicken, amoeba) {
+    // Chicken Teleport
+    
+    chicken.body.x = 20+Math.random()*(game.world.width-20);
+    chicken.body.y = 20+Math.random()*(game.world.height-20);
 }
     
 function doGod (stars) {
@@ -181,31 +236,65 @@ function doGod (stars) {
         //  Create a star inside of the 'stars' group
         var star = stars.create(i * 70, 10+Math.random()*(game.world.height-20), 'star');
 
-        //  Let gravity do its thing
-        // star.body.gravity.y = 300;
-
-        //  This just gives each star a slightly random bounce value
-        // star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
 }
+    
+function doDarwin (amoebase) {
+    // Make some amoebas from the aether
+    for (var i = 0; i < 10; i++)
+    {
+        //  Create a star inside of the 'stars' group
+        var amoeba = amoebas.create(i * 70, 10+Math.random()*(game.world.height-20), 'amoeba');
 
-function goFull() {
-//    scoreText = 'Hi Mom';
-    if (cursors.down.isDown) {
-        if (game.scale.isFullScreen)
-        {
-            game.scale.stopFullScreen();
-        }
-        else
-        {
-            game.scale.startFullScreen(false);
-        }
     }
 }
+    
 function rePlay (music) {
     music.play()
 }
-    
+
+
+
+function randomNum(x){
+    return Math.floor((Math.random() * x));
+}
+
+
+function newPlanet(game){
+    planetX = randomNum(game.world.width);
+    planetY = randomNum(game.world.height);
+
+    choice = randomNum(planetSprites.length);
+
+    planet = planetGroup.create(planetX, planetY, planetSprites[choice].sheet);
+    planet.frame = randomNum(planet.animations.frameTotal);
+
+    planet.tint = Math.random() * 0xffffff;
+
+    //  Pick a random number between -2 and 6
+    var rand = game.rnd.realInRange(-2, 1);
+
+    //  Set the scale of the sprite to the random value
+    planet.scale.setTo(rand, rand);
+
+
+    if(p2On){
+        game.physics.p2.enable(planet);
+
+        planet.body.dynamic = true;
+
+        //  Give the kinematic objects some velocity
+//        planet.body.velocity.x = randomNum(10) - 5;
+//        planet.body.velocity.x = randomNum(10) - 5;
+        planet.body.mass = 50;
+        planet.body.data.gravityScale = 1;
+    } else{
+        game.physics.arcade.enable(planet);
+        planet.body.velocity.x = randomNum(4) - 2;
+        planet.body.velocity.y = randomNum(4) - 2;
+    }
+
+}
 
 </script>
 
