@@ -26,6 +26,7 @@ function preload() {
     game.load.image('starsbg', 'assets/Sully800x600background.png')
     game.load.spritesheet('dude', 'assets/dude.png', 32, 48);
     game.load.spritesheet('chicken', 'assets/chicken_spritesheet_75x90.png', 75, 90, 4, -5);
+    game.load.audio('chickenmusic', 'assets/ChickenFloatingThroughSpace.mp3');
 }
     
 //function render() {
@@ -37,6 +38,12 @@ function create() {
     game.physics.startSystem(Phaser.Physics.ARCADE);
     // Add background image
     game.add.sprite(0, 0, 'starsbg');
+    
+    // Start the music!  Yes, we should make this optional, but hey... use your volume button.
+    music = game.add.audio('chickenmusic');
+    music.play();
+    music.onStop.add(rePlay, this);
+    // game.sound.setDecodedCallback(music, rePlay, this);
     
     // The chicken and its settings
     chicken = game.add.sprite(game.world.width / 2, game.world.height-20, 'chicken');
@@ -132,6 +139,8 @@ function collectStar (chicken, star) {
     scoreText.text = 'Score: ' + score;
     
     stars.create(10+Math.random()*(game.world.width-20), 10+Math.random()*(game.world.height-20), 'star');
+    
+    if(Math.random() > 0.25) stars.create(10+Math.random()*(game.world.width-20), 10+Math.random()*(game.world.height-20), 'star');
 
 }
     
@@ -148,6 +157,10 @@ function doGod (stars) {
         //  This just gives each star a slightly random bounce value
         // star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
+}
+    
+function rePlay (music) {
+    music.play()
 }
     
 
