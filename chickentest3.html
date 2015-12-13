@@ -152,19 +152,9 @@ function updateArcade() {
     
     //  Checks to see if the chicken overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(chicken, stars, collectStar, null, this);
-//    game.physics.arcade.overlap(chicken, planetGroup, planetThing, null, this);
+    game.physics.arcade.overlap(chicken, planetGroup, planetThing, null, this);
     game.physics.arcade.overlap(chicken, amoebas, smackDown, null, this);
 
-
-    // Update planets and ensure wrapping
-
-    planetGroup.forEach(function(planet) {
-        var x = planet.body.velocity.x;
-        var y = planet.body.velocity.y;
-        screenWrap(planet);
-        planet.body.velocity.x = x;
-        planet.body.velocity.y = y;
-    });
 
     if (cursors.left.isDown && cursors.right.isDown) {
         game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed + 40, chicken.body.velocity);
@@ -205,8 +195,6 @@ function updateArcade() {
     
     
 }
-
-
 
 function planetThing(chicken, planet){
     planet.body.velocity.x = chicken.body.velocity.x * 2;
@@ -302,36 +290,12 @@ function newPlanet(game){
         planet.body.data.gravityScale = 1;
     } else{
         game.physics.arcade.enable(planet);
-        planet.body.velocity.x = randomNum(10) - 5;
-        planet.body.velocity.y = randomNum(10) - 5;
-        planet.body.maxVelocity.set(5);
-//        planet.body.minVelocity.set(-15);
+        planet.body.velocity.x = randomNum(4) - 2;
+        planet.body.velocity.y = randomNum(4) - 2;
     }
 
 }
 
-
-function screenWrap (sprite) {
-
-    if (sprite.x < 0 - sprite.width)
-    {
-        sprite.x = game.world.width + sprite.width - 1;
-    }
-    else if (sprite.x > game.world.width + sprite.width)
-    {
-        sprite.x = 0 - sprite.width + 1;
-    }
-
-    if (sprite.y < 0 - sprite.height)
-    {
-        sprite.y = game.world.height + sprite.height - 1;
-    }
-    else if (sprite.y > game.world.height + sprite.height)
-    {
-        sprite.y = 0 - sprite.height + 1;
-    }
-
-}
 </script>
 
 </body>
