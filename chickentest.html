@@ -154,7 +154,7 @@ function updateArcade() {
     //  Checks to see if the chicken overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(chicken, stars, collectStar, null, this);
 //    game.physics.arcade.overlap(chicken, planetGroup, planetThing, null, this);
-//    game.physics.arcade.overlap(chicken, amoebas, smackDown, null, this);
+    game.physics.arcade.overlap(chicken, amoebas, smackDown, null, this);
 
 
     // Update planets and ensure wrapping
