@@ -16,7 +16,8 @@
 <script type="text/javascript">
 
 var game = new Phaser.Game(800, 600, Phaser.AUTO, '', { preload: preload, create: create, update: update}) // , render: render });
-
+var score = 0;
+    
 function preload() {
     
     game.load.image('sky', 'assets/sky.png');
@@ -45,15 +46,13 @@ function create() {
 
     //  chicken physics properties. Give the little guy a slight bounce from the walls
     chicken.body.bounce.y = 0.4;
-    // chicken.body.gravity.y = 300;
     chicken.body.collideWorldBounds = true;
     chicken.body.allowRotation = true;
 
     //  Our two animations, walking left and right.
     chicken.animations.add('left', [0, 1], 10, true);
     chicken.animations.add('right', [0, 2], 10, true);
-    chicken.animations.add('both', [1,2], 10, true);
-    
+    chicken.animations.add('both', [1,2], 10, true);    
     
     
     chicken.anchor.set(0.5)
@@ -65,20 +64,9 @@ function create() {
     stars = game.add.group();
 
     //  We will enable physics for any star that is created in this group
-    // stars.enableBody = true;
+    stars.enableBody = true;
 
-    //  Here we'll create 12 of them evenly spaced apart
-    for (var i = 0; i < 12; i++)
-    {
-        //  Create a star inside of the 'stars' group
-        var star = stars.create(i * 70, 10+Math.random()*(game.world.height-20), 'star');
-
-        //  Let gravity do its thing
-        // star.body.gravity.y = 300;
-
-        //  This just gives each star a slightly random bounce value
-        // star.body.bounce.y = 0.7 + Math.random() * 0.2;
-    }
+    doGod(stars);
 
     //  The score
     scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFF' });
@@ -91,14 +79,13 @@ function create() {
 function update() {
     
     //  Checks to see if the chicken overlaps with any of the stars, if he does call the collectStar function
-    // game.physics.arcade.overlap(chicken, stars, collectStar, null, this);
+    game.physics.arcade.overlap(chicken, stars, collectStar, null, this);
     
 
     if (cursors.left.isDown && cursors.right.isDown) {
         game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed + 40, chicken.body.velocity);
         game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 100, chicken.body.acceleration); // (Math.Pi/2)
         chicken.body.angularVelocity -= (chicken.body.angularVelocity == 0) ? 0 : 5 * chicken.body.angularVelocity / Math.abs(chicken.body.angularVelocity);
-        scoreText.text = 'Hi Mom';
         chicken.animations.play('both');
     }
     else if (cursors.left.isDown)
@@ -125,10 +112,6 @@ function update() {
     {
         //  Slow rotation
         chicken.animations.stop();
-        //chicken.body.accelleration.set(0);
-//        scoreText.text = 'V = ' + chicken.body.angularVelocity + ' R: ' + chicken.rotation + 
-//                '\nA1: ' + chicken.body.angle + '\nA2: ' + chicken.body.acceleration + 
-//                '\nFacing:' + chicken.body.facing;
         game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed - 4, chicken.body.velocity);
         chicken.body.angularVelocity -= (chicken.body.angularVelocity == 0) ? 0 : 2 * chicken.body.angularVelocity / Math.abs(chicken.body.angularVelocity);
         // game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 0, chicken.body.acceleration); // (Math.Pi/2)
@@ -136,13 +119,7 @@ function update() {
         chicken.frame = 0;
     }
     
-    // Go forth young chicken
-    if (cursors.up.isDown)
-    {
-
-    }
     
-    screenWrap(chicken)  // delete this later unless we settle on screen wrapping
 }
     
 function collectStar (chicken, star) {
@@ -153,31 +130,26 @@ function collectStar (chicken, star) {
     //  Add and update the score
     score += 10;
     scoreText.text = 'Score: ' + score;
+    
+    stars.create(10+Math.random()*(game.world.width-20), 10+Math.random()*(game.world.height-20), 'star');
 
 }
     
-function screenWrap (sprite) {
+function doGod (stars) {
+        //  Here we'll create 12 of them evenly spaced apart
+    for (var i = 0; i < 12; i++)
+    {
+        //  Create a star inside of the 'stars' group
+        var star = stars.create(i * 70, 10+Math.random()*(game.world.height-20), 'star');
 
-    var mythick = 20
-    if (sprite.x < 0)
-    {
-        sprite.x = game.width-mythick;
-    }
-    else if (sprite.x > game.width)
-    {
-        sprite.x = mythick;
-    }
+        //  Let gravity do its thing
+        // star.body.gravity.y = 300;
 
-    if (sprite.y < 0)
-    {
-        sprite.y = game.height-mythick;
+        //  This just gives each star a slightly random bounce value
+        // star.body.bounce.y = 0.7 + Math.random() * 0.2;
     }
-    else if (sprite.y > game.height)
-    {
-        sprite.y = mythick;
-    }
-
 }
+    
 
 </script>
 
