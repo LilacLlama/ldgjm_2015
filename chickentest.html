@@ -41,6 +41,7 @@
 
     var score = 0;
     var getwell;
+    var splash;
     
 function preload() {
     
@@ -53,6 +54,7 @@ function preload() {
     game.load.spritesheet('amoeba', 'assets/Amoeba_spritesheet_124x80x3.png', 124, 80);
     game.load.audio('chickenmusic', 'assets/peg.mp3');
     game.load.image('stars', 'assets/starsglow1.gif');
+    game.load.image('splash', 'assets/SplashScreen.png');
     game.load.audio('gulp', 'assets/gulp.m4a');
     game.load.audio('birdflapping', 'assets/Flap.m4a');
     game.load.audio('teleport', 'assets/teleport.mp3');
@@ -148,6 +150,11 @@ function create() {
     cursors = game.input.keyboard.createCursorKeys();
     cursors.left.onDown.add(playFlapLeft, this);
     cursors.right.onDown.add(playFlapRight, this);
+    
+    splash = game.add.sprite(0, 0, 'splash');
+    splash.fixedToCamera = true;
+    game.input.onDown.add(removeLogo, this);
+    game.paused = true;
 }
 
 function updateP2(){
@@ -398,7 +405,15 @@ function playFlapRight(){
     chicken.animations.play('right');
 }
 
-    function amoebaSickness(){
+function removeLogo () {
+
+    game.input.onDown.remove(removeLogo, this);
+    splash.kill();
+    game.paused = false;
+
+}
+    
+function amoebaSickness(){
         var sicknessLevel;
 
         if(amoebaTouched > 1000){
