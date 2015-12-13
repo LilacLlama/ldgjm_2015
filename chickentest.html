@@ -29,7 +29,7 @@
 
 <script type="text/javascript">
 
-    var game = new Phaser.Game(900, 500, Phaser.AUTO, 'game', { preload: preload, create: create, update: updateArcade });
+    var game = new Phaser.Game(900, 500, Phaser.AUTO, 'game', { preload: preload, create: create, update: updateArcade, render:render });
     var planetSprites = [
 //        { sheet:'sm_planet',  frames: 784, size:25, assets:'assets/planet_background1.png'},
         { sheet:'med_planet', frames: 196, size:50, assets:'assets/med_planets.png'},
@@ -53,11 +53,14 @@ function preload() {
     game.load.audio('chickenmusic', 'assets/peg.mp3');
     game.load.image('stars', 'assets/starsglow1.gif');
     game.load.audio('gulp', 'assets/gulp.m4a');
+    game.load.audio('birdflapping', 'assets/Flap.m4a');
+    game.load.audio('teleport', 'assets/teleport.mp3');
+    
 }
 
 function create() {
 
-    game.world.setBounds(0, 0, 2000, 2000);
+    game.world.setBounds(0, 0, 2500, 2500);
 
     if(p2On) {
         game.physics.startSystem(Phaser.Physics.P2JS);
@@ -81,19 +84,19 @@ function create() {
 
     planetGroup = game.add.group();
 
-    for(i = 0; i < randomNum(100)+50; i++){
+    for(i = 0; i < 1; i++){
         newPlanet(game);
     }
 
 
 
     // Start the music!  Yes, we should make this optional, but hey... use your volume button.
-    music = game.add.audio('chickenmusic');
-    music.volume -= 0.25;
+    music = game.add.sound('chickenmusic', 0.75);
     music.play();
     music.onStop.add(rePlay, this);
     gulp = game.add.audio('gulp');
-    gulp.volume += 0.5;
+    flap = game.add.sound('birdflapping', 0.25);
+    teleport = game.add.audio('teleport');
 
 
     // The chicken and its settings
@@ -110,8 +113,8 @@ function create() {
     chicken.body.maxVelocity.set(500);
     
     //  Our two animations, walking left and right.
-    chicken.animations.add('left', [0, 1], 10, true);
-    chicken.animations.add('right', [0, 2], 10, true);
+    chicken.animations.add('left', [0, 1], 25, true);
+    chicken.animations.add('right', [0, 2], 25, true);
     chicken.animations.add('both', [1,2], 10, true);        
     chicken.anchor.set(0.5);   // So that the chicken rotates around its center, not its corner
     
@@ -231,6 +234,7 @@ function smackDown (chicken, amoeba) {
     
     chicken.body.x = 20+Math.random()*(game.world.width-20);
     chicken.body.y = 20+Math.random()*(game.world.height-20);
+    teleport.play();
 }
     
 function doGod (stars) {
@@ -310,25 +314,51 @@ function newPlanet(game){
 
 }
 
+
     function screenWrap (sprite) {
+//
+//        game.debug.spriteBounds(sprite);
+//        game.debug.spriteInfo(sprite, 20, 32);
+//        game.debug.spriteCoords(sprite, 20, 100);
+//        game.debug.text("Velocity X " + sprite.body.velocity.x, 20, 450);
+//        game.debug.text("Velocity Y " + sprite.body.velocity.y, 20, 430);
+//
+//
+//        game.debug.text("World X " + game.world.width, 20, 480);
+//        game.debug.text("World Y " + game.world.height, 20, 500);
+//
+//        game.debug.cameraInfo(game.camera, 20, 170);
+//
+//        game.debug.text("Wrapping X " + (game.world.width + sprite.width + 5), 20, 320);
+//        game.debug.text("Wrapping X " + (0 - sprite.width - 5), 20, 340);
+//        game.debug.text("Wrapping Y " + (game.world.height + sprite.height + 5), 20, 300);
+//        game.debug.text("Wrapping Y " + (0 - sprite.height - 5), 20, 280);
 
-        if (sprite.body.position.x < 0 - sprite.width * 2 * sprite.scale)
+        if (sprite.body.position.x <= 0 )
         {
-            sprite.body.position.x = game.world.width + sprite.width * 1.1 * sprite.scale;
+//            game.debug.text("X", 10, 320);
+            sprite.body.position.x = game.world.width;
         }
-        else if (sprite.body.position.x > game.world.width + sprite.width * 2 * sprite.scale)
+        else if (sprite.body.position.x >= (game.world.width - sprite.width) )
         {
-            sprite.body.position.x = 0 - sprite.width * 1.1 * sprite.scale;
+//            game.debug.text("X", 10, 340);
+            sprite.body.position.x = 0;
         }
 
-        if (sprite.body.position.y < 0 - sprite.height * 2 * sprite.scale)
+        if (sprite.body.position.y <= 0  )
         {
-            sprite.body.position.y = game.world.height  + sprite.height * 1.1 * sprite.scale;
+//            game.debug.text("X", 10, 300);
+            sprite.body.position.y = game.world.height;
         }
-        else if (sprite.body.position.y > game.world.height + sprite.height * 2 * sprite.scale)
+        else if (sprite.body.position.y >= (game.world.width - sprite.height) )
         {
-            sprite.body.position.y = 0 - sprite.height * 1.1 * sprite.scale;
+//            game.debug.text("X", 10, 280);
+            sprite.body.position.y = 0;
         }
+
+    }
+
+    function render(){
 
     }
 function playFlapLeft(){
