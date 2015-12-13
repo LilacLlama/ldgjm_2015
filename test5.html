@@ -86,12 +86,22 @@
         bgtile.tilePosition.x -= randomNum(3);
         bgtile.tilePosition.y -= randomNum(3);
 
+//        planetGroup.x -= randomNum(3) - 1;
+//
+//        planetGroup.y -= randomNum(3) - 1;
+
         planetGroup.forEach(function(planet) {
 
+//            planet.x -= randomNum(3) - 1;
+//            planet.y -= randomNum(3) - 1;
 
-            planet.position.x -= randomNum(3) - 1;
-            planet.position.y -= randomNum(3) - 1;
-            redrawMask(planet);
+            planet.mask.clear();
+
+            planet.mask.beginFill(0xffffff);
+            planet.mask.drawCircle(planet.x + planet.height / 2,
+                    planet.y + planet.width / 2,
+                    planet.height / 2);
+
 
 
         });
@@ -112,9 +122,9 @@
         planetMask = game.add.graphics(0, 0);
         planet.mask = planetMask;
         planet.mask.beginFill(0xffffff);
-        planet.mask.drawCircle(planet.position.x + planet.height / 2,
-                planet.position.y + planet.height / 2,
-                planet.height / 2);
+        planet.mask.drawCircle(planet.position.x + planet.height / 3,
+                planet.position.y + planet.height / 3,
+                planet.height / 3);
 
     }
 
@@ -135,13 +145,15 @@
         planetMask.beginFill(0xffffff);
 //
 //            //	Here we'll draw a circle
-        planetMask.drawCircle(planetX + planetSprites[choice].size / 2,
-                planetY + planetSprites[choice].size / 2,
-                planetSprites[choice].size / 2);
+        planetMask.drawCircle(planetX + planetSprites[choice].size / 3,
+                planetY + planetSprites[choice].size / 3,
+                planetSprites[choice].size / 3);
 //
 //            //	And apply it to the Sprite
         planet.mask = planetMask;
         game.physics.arcade.enable(planet);
+        planet.body.velocity.x = randomNum(10);
+        planet.body.velocity.y = randomNum(10);
     }
 
 </script>
