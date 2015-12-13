@@ -138,7 +138,8 @@ function create() {
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
-    
+    cursors.left.onDown.add(playFlapLeft, this);
+    cursors.right.onDown.add(playFlapRight, this);
 }
 
 function updateP2(){
@@ -326,6 +327,15 @@ function newPlanet(game){
         }
 
     }
+function playFlapLeft(){
+    flap.play();
+    chicken.animations.play('left');
+}
+
+function playFlapRight(){
+    flap.play();
+    chicken.animations.play('right');
+}
 </script>
 
 </body>
