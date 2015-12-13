@@ -35,6 +35,8 @@
         { sheet:'med_planet', frames: 196, size:50, assets:'assets/planet_background1.png'},
         { sheet:'lg_planet',  frames:  49, size:100, assets:'assets/planet_background1.png'}]
 
+    var planetGroup;
+
     function preload() {
 
         for(i = 0; i < planetSprites.length; i++){
@@ -43,6 +45,7 @@
 
         game.load.image('star', 'assets/star.png');
         game.load.image('starsbg', 'assets/Background-2.jpg') // 2048 x 1536
+        game.load.image('stars', 'assets/starsglow1.gif') // 2048 x 1536
         game.load.spritesheet('chicken', 'assets/chicken_spritesheet_75x90.png', 75, 90, 4, -5);
     }
 
@@ -52,6 +55,26 @@
         game.physics.startSystem(Phaser.Physics.NINJA);
 
 
+        bgtile = game.add.tileSprite(0, 0, game.stage.bounds.width, game.stage.bounds.height, 'stars');
+
+//        game.add.tileSprite(0, 0, 200, 200, 'stars');
+        game.world.setBounds(0, 0, 2000, 2000);
+        planetGroup = game.add.group();
+
+        for(i = 0; i < randomNum(100)+50; i++){
+            newPlanet(game);
+        }
+
+//        game.physics.startSystem(Phaser.Physics.P2JS);
+
+//        player = game.add.sprite(game.world.centerX, game.world.centerY, 'player');
+
+//        game.physics.p2.enable(player);
+
+//        cursors = game.input.keyboard.createCursorKeys();
+
+//        game.camera.follow(player);
+
 
 
         upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
@@ -60,12 +83,18 @@
 
 
     function update() {
+        bgtile.tilePosition.x -= randomNum(3);
+        bgtile.tilePosition.y -= randomNum(3);
 
-        if (upKey.isDown)
-        {
+        planetGroup.forEach(function(planet) {
 
-            newPlanet(game);
-        }
+
+            planet.body.velocity.x -= randomNum(3) - 1;
+            planet.body.velocity.y -= randomNum(3) - 1;
+
+
+        });
+
 
     }
 
@@ -81,8 +110,10 @@
 
         choice = randomNum(planetSprites.length);
 
-        planet = game.add.sprite(planetX, planetY, planetSprites[choice].sheet);
+        planet = planetGroup.create(planetX, planetY, planetSprites[choice].sheet);
         planet.frame = randomNum(planet.animations.frameTotal);
+
+        planet.tint = Math.random() * 0xffffff;
 
         planetMask = game.add.graphics(0, 0);
 //
@@ -96,6 +127,7 @@
 //
 //            //	And apply it to the Sprite
         planet.mask = planetMask;
+        game.physics.arcade.enable(planet);
     }
 
 </script>
