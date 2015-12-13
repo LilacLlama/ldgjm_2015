@@ -122,13 +122,6 @@ function create() {
     stars.enableBody = true;
 
     doGod(stars);
-
-    //  The score
-    scoreText = game.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#FFF' });
-    scoreText.fixedToCamera = true;
-
-    //  Our controls.
-    cursors = game.input.keyboard.createCursorKeys();
     
     
     
@@ -136,11 +129,15 @@ function create() {
     amoebas = game.add.group();
     amoebas.enableBody = true;
     doDarwin(amoebas);
-    var frameNames = [0, 1, 0, 2];
-    amoebas.callAll('animations.add', 'animations', 'jiggle', frameNames, 10, true)
-//    amoeba.animations.add('jiggle', [0, 1, 0, 2], 10, true);
-    amoebas.callAll('play', null, 'swim');
-//    amoeba.animations.play('right');
+    amoebas.callAll('animations.add', 'animations', 'jiggle', [0, 1, 0, 2], 10, true)
+    amoebas.callAll('play', null, 'jiggle');
+
+    //  The score
+    scoreText = game.add.text(16, 16, 'Stars Gulped: 0', { fontSize: '32px', fill: '#FFF' });
+    scoreText.fixedToCamera = true;
+
+    //  Our controls.
+    cursors = game.input.keyboard.createCursorKeys();
     
 }
 
@@ -174,9 +171,6 @@ function updateArcade() {
     }
     else if (cursors.left.isDown)
     {
-        //  Move to the left
-        // chicken.body.velocity.x = -150;
-        // chicken.body.velocity.y = -50;
         game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed + 20, chicken.body.velocity);
         game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 100, chicken.body.acceleration); // (Math.Pi/2)
         chicken.body.angularVelocity += -20;
@@ -184,9 +178,6 @@ function updateArcade() {
     }
     else if (cursors.right.isDown)
     {
-        //  Move to the right
-//        chicken.body.velocity.x = 150;
-//        chicken.body.velocity.y = -50;
         game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed + 20, chicken.body.velocity);
         game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 100, chicken.body.acceleration); // (Math.Pi/2)
         chicken.body.angularVelocity += 20;
@@ -222,8 +213,8 @@ function collectStar (chicken, star) {
     star.kill();
 
     //  Add and update the score
-    score += 10;
-    scoreText.text = 'Score: ' + score;
+    score += 1;
+    scoreText.text = 'Stars Gulped: ' + score;
     
     gulp.play();
     
@@ -251,12 +242,20 @@ function doGod (stars) {
     }
 }
     
-function doDarwin (amoebase) {
+function doDarwin (amoebas) {
     // Make some amoebas from the aether
     for (var i = 0; i < 10; i++)
     {
         //  Create a star inside of the 'stars' group
         var amoeba = amoebas.create(i * 70, 10+Math.random()*(game.world.height-20), 'amoeba');
+        amoeba.body.collideWorldBounds = true;
+        amoeba.body.bounce.setTo(1, 1);
+        amoeba.body.velocity.x = Math.random()*200+50;
+        amoeba.body.velocity.y = Math.random()*200+50;
+        amoeba.body.velocity.x *= Math.random()<0.5 ? -1 : 1;
+        amoeba.body.velocity.y *= Math.random()<0.5 ? -1 : 1;
+        amoeba.body.immovable = true;
+        amoeba.body.maxVelocity.set(80);
 
     }
 }
