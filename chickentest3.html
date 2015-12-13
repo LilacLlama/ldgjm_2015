@@ -114,8 +114,8 @@ function create() {
     chicken.body.maxVelocity.set(500);
     
     //  Our two animations, walking left and right.
-    chicken.animations.add('left', [0, 1], 10, true);
-    chicken.animations.add('right', [0, 2], 10, true);
+    chicken.animations.add('left', [0, 1], 25, true);
+    chicken.animations.add('right', [0, 2], 25, true);
     chicken.animations.add('both', [1,2], 10, true);        
     chicken.anchor.set(0.5);   // So that the chicken rotates around its center, not its corner
 
@@ -149,7 +149,7 @@ function create() {
     var frameNames = [0, 1, 0, 2];
     amoebas.callAll('animations.add', 'animations', 'jiggle', frameNames, 10, true)
 //    amoeba.animations.add('jiggle', [0, 1, 0, 2], 10, true);
-    amoebas.callAll('play', null, 'swim');
+    amoebas.callAll('play', null, 'jiggle');
 //    amoeba.animations.play('right');
 
     
