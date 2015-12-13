@@ -34,44 +34,31 @@ function preload() {
 function create() {
     
     game.physics.startSystem(Phaser.Physics.ARCADE);
+    // Add background image
     game.add.sprite(0, 0, 'starsbg');
     
-//    //  The platforms group contains the ground and the 2 ledges we can jump on
-//    platforms = game.add.group();
-//
-//    //  We will enable physics for any object that is created in this group
-//    platforms.enableBody = true;
-//    
-//    // Here we create the ground.
-//    var ground = platforms.create(0, game.world.height, 'ground');
-//    // var ground = platforms.create(0, game.world.height - 64, 'ground');
-//
-//    //  Scale it to fit the width of the game (the original sprite is 400x32 in size)
-//    // ground.scale.setTo(2, 2);
-//
-//    //  This stops it from falling away when you jump on it
-//    ground.body.immovable = true;
-    
     // The chicken and its settings
-    chicken = game.add.sprite(game.world.width / 2, 0, 'chicken');
+    chicken = game.add.sprite(game.world.width / 2, game.world.height-20, 'chicken');
     
      //  We need to enable physics on the chicken
     game.physics.arcade.enable(chicken);
 
-    //  chicken physics properties. Give the little guy a slight bounce.
-    chicken.body.bounce.y = 0.2;
+    //  chicken physics properties. Give the little guy a slight bounce from the walls
+    chicken.body.bounce.y = 0.4;
     // chicken.body.gravity.y = 300;
     chicken.body.collideWorldBounds = true;
     chicken.body.allowRotation = true;
-    // chicken.body.deltaMax = ;
 
     //  Our two animations, walking left and right.
     chicken.animations.add('left', [0, 1], 10, true);
     chicken.animations.add('right', [0, 2], 10, true);
+    chicken.animations.add('both', [1,2], 10, true);
+    
+    
     
     chicken.anchor.set(0.5)
     
-    chicken.body.drag.set(500);
+    chicken.body.drag.set(50);
     chicken.body.maxVelocity.set(200);
     
     //  Finally some stars to collect
@@ -106,15 +93,21 @@ function update() {
     //  Checks to see if the chicken overlaps with any of the stars, if he does call the collectStar function
     // game.physics.arcade.overlap(chicken, stars, collectStar, null, this);
     
-    //  Reset the chickens velocity (movement)
-    // chicken.body.velocity.x = 0;
 
-    if (cursors.left.isDown)
+    if (cursors.left.isDown && cursors.right.isDown) {
+        game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed + 40, chicken.body.velocity);
+        game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 100, chicken.body.acceleration); // (Math.Pi/2)
+        chicken.body.angularVelocity -= (chicken.body.angularVelocity == 0) ? 0 : 5 * chicken.body.angularVelocity / Math.abs(chicken.body.angularVelocity);
+        scoreText.text = 'Hi Mom';
+        chicken.animations.play('both');
+    }
+    else if (cursors.left.isDown)
     {
         //  Move to the left
         // chicken.body.velocity.x = -150;
         // chicken.body.velocity.y = -50;
-        game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 200, chicken.body.acceleration); // (Math.Pi/2)
+        game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed + 20, chicken.body.velocity);
+        game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 100, chicken.body.acceleration); // (Math.Pi/2)
         chicken.body.angularVelocity += -20;
         chicken.animations.play('left');
     }
@@ -123,7 +116,8 @@ function update() {
         //  Move to the right
 //        chicken.body.velocity.x = 150;
 //        chicken.body.velocity.y = -50;
-        game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 200, chicken.body.acceleration); // (Math.Pi/2)
+        game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed + 20, chicken.body.velocity);
+        game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 100, chicken.body.acceleration); // (Math.Pi/2)
         chicken.body.angularVelocity += 20;
         chicken.animations.play('right');
     }
@@ -135,6 +129,7 @@ function update() {
 //        scoreText.text = 'V = ' + chicken.body.angularVelocity + ' R: ' + chicken.rotation + 
 //                '\nA1: ' + chicken.body.angle + '\nA2: ' + chicken.body.acceleration + 
 //                '\nFacing:' + chicken.body.facing;
+        game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed - 4, chicken.body.velocity);
         chicken.body.angularVelocity -= (chicken.body.angularVelocity == 0) ? 0 : 2 * chicken.body.angularVelocity / Math.abs(chicken.body.angularVelocity);
         // game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 0, chicken.body.acceleration); // (Math.Pi/2)
         // chicken.body.angularVelocity = chicken.body.angularVelocity - 1
