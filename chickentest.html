@@ -52,6 +52,7 @@ function preload() {
     game.load.audio('chickenmusic', 'assets/peg.mp3');
     game.load.image('stars', 'assets/starsglow1.gif');
     game.load.audio('gulp', 'assets/gulp.m4a');
+    game.load.audio('birdflapping', 'assets/Flap.m4a');
 }
 
 function create() {
@@ -93,6 +94,8 @@ function create() {
     music.onStop.add(rePlay, this);
     gulp = game.add.audio('gulp');
     gulp.volume += 0.5;
+    flap = game.add.audio('birdflapping');
+    flap.volume += 0.6;
 
 
     // The chicken and its settings
@@ -138,7 +141,8 @@ function create() {
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
-    
+    cursors.left.onDown.add(playFlapLeft, this);
+    cursors.right.onDown.add(playFlapRight, this);
 }
 
 function updateP2(){
@@ -352,7 +356,15 @@ function newPlanet(game){
     function render(){
 
     }
+function playFlapLeft(){
+    flap.play();
+    chicken.animations.play('left');
+}
 
+function playFlapRight(){
+    flap.play();
+    chicken.animations.play('right');
+}
 </script>
 
 </body>
