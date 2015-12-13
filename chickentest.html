@@ -159,11 +159,11 @@ function updateArcade() {
     // Update planets and ensure wrapping
 
     planetGroup.forEach(function(planet) {
-        var x = planet.body.velocity.x;
-        var y = planet.body.velocity.y;
-        screenWrap(planet);
-        planet.body.velocity.x = x;
-        planet.body.velocity.y = y;
+//        var x = planet.body.velocity.x;
+//        var y = planet.body.velocity.y;
+        screenWrap2(planet);
+//        planet.body.velocity.x = x;
+//        planet.body.velocity.y = y;
     });
 
     if (cursors.left.isDown && cursors.right.isDown) {
@@ -302,8 +302,8 @@ function newPlanet(game){
         planet.body.data.gravityScale = 1;
     } else{
         game.physics.arcade.enable(planet);
-        planet.body.velocity.x = randomNum(10) - 5;
-        planet.body.velocity.y = randomNum(10) - 5;
+        planet.body.velocity.x = randomNum(100) - 5;
+        planet.body.velocity.y = randomNum(100) - 5;
         planet.body.maxVelocity.set(5);
 //        planet.body.minVelocity.set(-15);
     }
@@ -313,25 +313,69 @@ function newPlanet(game){
 
 function screenWrap (sprite) {
 
-    if (sprite.x < 0 - sprite.width)
+    if (sprite.x < 0 - sprite.width * 2)
     {
-        sprite.x = game.world.width + sprite.width - 1;
+        sprite.x = game.world.width + sprite.width;
     }
-    else if (sprite.x > game.world.width + sprite.width)
+    else if (sprite.x > game.world.width + sprite.width * 2)
     {
-        sprite.x = 0 - sprite.width + 1;
+        sprite.x = 0 - sprite.width;
     }
 
-    if (sprite.y < 0 - sprite.height)
+    if (sprite.y < 0 - sprite.height * 2)
     {
-        sprite.y = game.world.height + sprite.height - 1;
+        sprite.y = game.world.height + sprite.height;
     }
-    else if (sprite.y > game.world.height + sprite.height)
+    else if (sprite.y > game.world.height + sprite.height * 2)
     {
-        sprite.y = 0 - sprite.height + 1;
+        sprite.y = 0 - sprite.height;
     }
 
 }
+
+    function screenWrap1 (sprite) {
+
+        if (sprite.x < 0 - sprite.width * 2)
+        {
+            sprite.x = game.world.width + sprite.width;
+        }
+        else if (sprite.x > game.world.width + sprite.width * 2)
+        {
+            sprite.x = 0 - sprite.width;
+        }
+
+        if (sprite.y < 0 - sprite.height * 2)
+        {
+            sprite.y = game.world.height + sprite.height;
+        }
+        else if (sprite.y > game.world.height + sprite.height * 2)
+        {
+            sprite.y = 0 - sprite.height;
+        }
+
+    }
+
+    function screenWrap2 (sprite) {
+
+        if (sprite.body.position.x < 0 - sprite.width * 2)
+        {
+            sprite.body.position.x = game.world.width / 2;
+        }
+        else if (sprite.body.position.x > game.world.width + sprite.width * 2)
+        {
+            sprite.body.position.x = game.world.width / 2;
+        }
+
+        if (sprite.body.position.y < 0 - sprite.height * 2)
+        {
+            sprite.body.position.y = game.world.height / 2;
+        }
+        else if (sprite.body.position.y > game.world.height + sprite.height * 2)
+        {
+            sprite.body.position.y = game.world.height / 2;
+        }
+
+    }
 </script>
 
 </body>
