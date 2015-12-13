@@ -9,7 +9,7 @@
 <body>
 
     <div class="container">
-        <h1 class ="col-lg-offset-4 col-lg-6">Chicken Pox</h1>
+<!--        <h1 class ="col-lg-offset-4 col-lg-6">Chicken Pox</h1>
         <hr/>
         <div class ="navbar">
             <ul class="nav nav-tabs col-lg-offset-3 col-lg-6">
@@ -17,7 +17,7 @@
                 <li role="presentation"><a href="test.html">Test - 1</a></li>
                 <li role="presentation" class="active"><a href="test2.html">Test - 2</a></li>
             </ul>
-        </div>
+        </div> -->
         <div  class="col-lg-offset-1 col-lg-10" id="game" />
     </div >
 
@@ -42,7 +42,9 @@
     function create() {
 
         game.physics.startSystem(Phaser.Physics.NINJA);
-        game.add.sprite(-400, -400, 'starsbg');
+        background = game.add.sprite(-400, -400, 'starsbg');
+        game.physics.arcade.enable(background);
+
 
 //        // Here we create the ground.
 //        var ground = platforms.create(0, game.world.height, 'ground');
@@ -139,6 +141,8 @@
             chicken.frame = 4;
         }
 
+
+
         //  Allow the chicken to jump if they are touching the ground.
 //    if (cursors.up.isDown && chicken.body.touching.down)
         if (cursors.up.isDown)
@@ -146,7 +150,16 @@
 
         }
 
+        updateBackground(chicken, background);
+
         screenWrap(chicken)
+    }
+
+    function updateBackground(chicken, background){
+
+        background.body.velocity.x =  - chicken.body.velocity.x / 25;
+        background.body.velocity.y = - chicken.body.velocity.y / 25;
+
     }
 
     function collectStar (chicken, star) {
