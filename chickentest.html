@@ -49,6 +49,7 @@ function preload() {
     }
 
     game.load.image('star', 'assets/star.png');
+    game.load.spritesheet('volume', 'assets/volume.png', 36, 36);
     game.load.spritesheet('chicken', 'assets/chicken_spritesheet_75x90.png', 75, 90, 4, -5);
     game.load.spritesheet('amoeba', 'assets/Amoeba_spritesheet_124x80x3.png', 124, 80);
     game.load.audio('chickenmusic', 'assets/peg.mp3');
@@ -95,9 +96,9 @@ function create() {
     music = game.add.sound('chickenmusic', 0.75);
     music.play();
     music.onStop.add(rePlay, this);
-    gulp = game.add.audio('gulp');
+    gulp = game.add.sound('gulp');
     flap = game.add.sound('birdflapping', 0.5);
-    teleport = game.add.audio('teleport');
+    teleport = game.add.sound('teleport');
 
 
     // The chicken and its settings
@@ -144,6 +145,11 @@ function create() {
     scoreText = game.add.text(16, 16, 'Stars Gulped: 0', { fontSize: '32px', fill: '#FFF' });
     scoreText.fixedToCamera = true;
 
+    //Volume Button
+    mute = game.add.button(866, 16, 'volume', toggleSound, this);
+    mute.anchor.setTo(0.5, 0.5);
+    mute.fixedToCamera = true;
+    
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
     cursors.left.onDown.add(playFlapLeft, this);
@@ -384,6 +390,24 @@ function playFlapRight(){
     flap.play();
     chicken.animations.play('right');
 }
+
+function toggleSound(){
+    if(mute.frame == 0){
+        mute.frame = 1;
+        music.volume = 0;
+        gulp.volume = 0;
+        flap.volume = 0;
+        teleport.volume = 0;
+        
+    }else{
+        mute.frame = 0;
+        music.volume = 0.75;
+        gulp.volume = 1;
+        flap.volume = 0.5;
+        teleport.volume = 1;
+    }
+}    
+    
 </script>
 
 </body>
