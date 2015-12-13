@@ -29,6 +29,7 @@
 
 <script type="text/javascript">
 
+    var amoebaTouched = 0;
     var game = new Phaser.Game(900, 500, Phaser.AUTO, 'game', { preload: preload, create: create, update: updateArcade, render:render });
     var planetSprites = [
 //        { sheet:'sm_planet',  frames: 784, size:25, assets:'assets/planet_background1.png'},
@@ -159,6 +160,14 @@ function updateArcade() {
 
     // Update planets and ensure wrapping
 
+    if(amoebaTouched > 1){
+        chicken.tint = 0x00ff00;
+        amoebaTouched -= 1;
+    }else if( amoebaTouched > 0 ){
+        chicken.tint = 0xffffff;
+        amoebaTouched -= 1;
+    }
+
     planetGroup.forEach(function(planet) {
         screenWrap(planet);
     });
@@ -208,7 +217,11 @@ function planetThing(chicken, planet){
 }
 
 function collectStar (chicken, star) {
-    
+
+    if(amoebaTouched > 0){
+        return;
+    }
+
     // Removes the star from the screen
     star.kill();
 
@@ -227,6 +240,7 @@ function collectStar (chicken, star) {
 
 function smackDown (chicken, amoeba) {
     // Chicken Teleport
+    amoebaTouched += 250;
     
     chicken.body.x = 20+Math.random()*(game.world.width-20);
     chicken.body.y = 20+Math.random()*(game.world.height-20);
