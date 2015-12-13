@@ -151,10 +151,14 @@ function create() {
     cursors.left.onDown.add(playFlapLeft, this);
     cursors.right.onDown.add(playFlapRight, this);
     
+    
     splash = game.add.sprite(0, 0, 'splash');
     splash.fixedToCamera = true;
-    game.input.onDown.add(removeLogo, this);
+//    game.input.onDown.add(removeLogo, this);
+    // cursors.onkeypress.add(removeLogo, this);
+    game.input.keyboard.onDownCallback = removeLogo;
     game.paused = true;
+    
 }
 
 function updateP2(){
