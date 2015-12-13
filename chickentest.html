@@ -53,6 +53,8 @@ function preload() {
     game.load.image('stars', 'assets/starsglow1.gif');
     game.load.audio('gulp', 'assets/gulp.m4a');
     game.load.audio('birdflapping', 'assets/Flap.m4a');
+    game.load.audio('teleport', 'assets/teleport.mp3');
+    
 }
 
 function create() {
@@ -88,14 +90,12 @@ function create() {
 
 
     // Start the music!  Yes, we should make this optional, but hey... use your volume button.
-    music = game.add.audio('chickenmusic');
-    music.volume -= 0.25;
+    music = game.add.sound('chickenmusic', 0.75);
     music.play();
     music.onStop.add(rePlay, this);
     gulp = game.add.audio('gulp');
-    gulp.volume += 0.5;
-    flap = game.add.audio('birdflapping');
-    flap.volume += 0.6;
+    flap = game.add.sound('birdflapping', 0.25);
+    teleport = game.add.audio('teleport');
 
 
     // The chicken and its settings
@@ -112,8 +112,8 @@ function create() {
     chicken.body.maxVelocity.set(500);
     
     //  Our two animations, walking left and right.
-    chicken.animations.add('left', [0, 1], 10, true);
-    chicken.animations.add('right', [0, 2], 10, true);
+    chicken.animations.add('left', [0, 1], 25, true);
+    chicken.animations.add('right', [0, 2], 25, true);
     chicken.animations.add('both', [1,2], 10, true);        
     chicken.anchor.set(0.5);   // So that the chicken rotates around its center, not its corner
     
@@ -230,6 +230,7 @@ function smackDown (chicken, amoeba) {
     
     chicken.body.x = 20+Math.random()*(game.world.width-20);
     chicken.body.y = 20+Math.random()*(game.world.height-20);
+    teleport.play();
 }
     
 function doGod (stars) {
