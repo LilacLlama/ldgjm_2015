@@ -1,0 +1,4 @@
+*.xdk
+*.xdke
+intelxdk.config.additions.xml
+xdk/
