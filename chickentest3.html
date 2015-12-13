@@ -48,10 +48,12 @@ function preload() {
 
     game.load.image('star', 'assets/star.png');
     game.load.spritesheet('chicken', 'assets/chicken_spritesheet_75x90.png', 75, 90, 4, -5);
+    game.load.audio('birdflapping', 'assets/Flap.m4a');
     game.load.spritesheet('amoeba', 'assets/Amoeba_spritesheet_124x80x3.png', 124, 80);
     game.load.audio('chickenmusic', 'assets/peg.mp3');
     game.load.image('stars', 'assets/starsglow1.gif');
     game.load.audio('gulp', 'assets/gulp.m4a');
+
 }
 
 function create() {
@@ -93,6 +95,9 @@ function create() {
     music.onStop.add(rePlay, this);
     gulp = game.add.audio('gulp');
     gulp.volume += 0.5;
+    flap = game.add.audio('birdflapping');
+    flap.volume += 0.8;
+
 
 
     // The chicken and its settings
@@ -113,6 +118,7 @@ function create() {
     chicken.animations.add('right', [0, 2], 10, true);
     chicken.animations.add('both', [1,2], 10, true);        
     chicken.anchor.set(0.5);   // So that the chicken rotates around its center, not its corner
+
     
 
     //  Finally some stars to collect
@@ -129,6 +135,10 @@ function create() {
 
     //  Our controls.
     cursors = game.input.keyboard.createCursorKeys();
+
+    cursors.left.onDown.add(playFlapLeft, this);
+    cursors.right.onDown.add(playFlapRight, this);
+
     
     
     
@@ -141,6 +151,7 @@ function create() {
 //    amoeba.animations.add('jiggle', [0, 1, 0, 2], 10, true);
     amoebas.callAll('play', null, 'swim');
 //    amoeba.animations.play('right');
+
     
 }
 
@@ -153,17 +164,20 @@ function updateArcade() {
     //  Checks to see if the chicken overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(chicken, stars, collectStar, null, this);
     game.physics.arcade.overlap(chicken, planetGroup, planetThing, null, this);
+
     game.physics.arcade.overlap(chicken, amoebas, smackDown, null, this);
 
 
     if (cursors.left.isDown && cursors.right.isDown) {
         game.physics.arcade.velocityFromRotation(chicken.rotation - 1.5707963, chicken.body.speed + 40, chicken.body.velocity);
+
         game.physics.arcade.accelerationFromRotation(chicken.rotation - 1.5707963, 100, chicken.body.acceleration); // (Math.Pi/2)
         chicken.body.angularVelocity -= (chicken.body.angularVelocity == 0) ? 0 : 5 * chicken.body.angularVelocity / Math.abs(chicken.body.angularVelocity);
         chicken.animations.play('both');
     }
     else if (cursors.left.isDown)
     {
+
         //  Move to the left
         // chicken.body.velocity.x = -150;
         // chicken.body.velocity.y = -50;
@@ -174,6 +188,7 @@ function updateArcade() {
     }
     else if (cursors.right.isDown)
     {
+
         //  Move to the right
 //        chicken.body.velocity.x = 150;
 //        chicken.body.velocity.y = -50;
@@ -222,6 +237,7 @@ function collectStar (chicken, star) {
 }
     
 
+
 function smackDown (chicken, amoeba) {
     // Chicken Teleport
     
@@ -229,12 +245,14 @@ function smackDown (chicken, amoeba) {
     chicken.body.y = 20+Math.random()*(game.world.height-20);
 }
     
+
 function doGod (stars) {
         //  Here we'll create 12 of them evenly spaced apart
     for (var i = 0; i < 12; i++)
     {
         //  Create a star inside of the 'stars' group
         var star = stars.create(i * 70, 10+Math.random()*(game.world.height-20), 'star');
+
 
     }
 }
@@ -245,6 +263,7 @@ function doDarwin (amoebase) {
     {
         //  Create a star inside of the 'stars' group
         var amoeba = amoebas.create(i * 70, 10+Math.random()*(game.world.height-20), 'amoeba');
+
 
     }
 }
@@ -293,6 +312,18 @@ function newPlanet(game){
         planet.body.velocity.x = randomNum(4) - 2;
         planet.body.velocity.y = randomNum(4) - 2;
     }
+
+
+}  
+    
+function playFlapLeft(){
+    flap.play();
+    chicken.animations.play('left');
+}
+
+function playFlapRight(){
+    flap.play();
+    chicken.animations.play('right');
 
 }
 
