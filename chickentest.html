@@ -156,11 +156,7 @@ function updateArcade() {
     // Update planets and ensure wrapping
 
     planetGroup.forEach(function(planet) {
-//        var x = planet.body.velocity.x;
-//        var y = planet.body.velocity.y;
-        screenWrap2(planet);
-//        planet.body.velocity.x = x;
-//        planet.body.velocity.y = y;
+        screenWrap(planet);
     });
 
     if (cursors.left.isDown && cursors.right.isDown) {
@@ -309,52 +305,7 @@ function newPlanet(game){
 
 }
 
-
-function screenWrap (sprite) {
-
-    if (sprite.x < 0 - sprite.width * 2)
-    {
-        sprite.x = game.world.width + sprite.width;
-    }
-    else if (sprite.x > game.world.width + sprite.width * 2)
-    {
-        sprite.x = 0 - sprite.width;
-    }
-
-    if (sprite.y < 0 - sprite.height * 2)
-    {
-        sprite.y = game.world.height + sprite.height;
-    }
-    else if (sprite.y > game.world.height + sprite.height * 2)
-    {
-        sprite.y = 0 - sprite.height;
-    }
-
-}
-
-    function screenWrap1 (sprite) {
-
-        if (sprite.x < 0 - sprite.width * 2)
-        {
-            sprite.x = game.world.width + sprite.width;
-        }
-        else if (sprite.x > game.world.width + sprite.width * 2)
-        {
-            sprite.x = 0 - sprite.width;
-        }
-
-        if (sprite.y < 0 - sprite.height * 2)
-        {
-            sprite.y = game.world.height + sprite.height;
-        }
-        else if (sprite.y > game.world.height + sprite.height * 2)
-        {
-            sprite.y = 0 - sprite.height;
-        }
-
-    }
-
-    function screenWrap2 (sprite) {
+    function screenWrap (sprite) {
 
         if (sprite.body.position.x < 0 - sprite.width * 2 * sprite.scale)
         {
