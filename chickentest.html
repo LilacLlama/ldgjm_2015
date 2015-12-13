@@ -29,7 +29,7 @@
 
 <script type="text/javascript">
 
-    var game = new Phaser.Game(900, 500, Phaser.AUTO, 'game', { preload: preload, create: create, update: updateArcade });
+    var game = new Phaser.Game(900, 500, Phaser.AUTO, 'game', { preload: preload, create: create, update: updateArcade, render:render });
     var planetSprites = [
 //        { sheet:'sm_planet',  frames: 784, size:25, assets:'assets/planet_background1.png'},
         { sheet:'med_planet', frames: 196, size:50, assets:'assets/med_planets.png'},
@@ -56,7 +56,7 @@ function preload() {
 
 function create() {
 
-    game.world.setBounds(0, 0, 2000, 2000);
+    game.world.setBounds(0, 0, 1000, 1000);
 
     if(p2On) {
         game.physics.startSystem(Phaser.Physics.P2JS);
@@ -80,7 +80,7 @@ function create() {
 
     planetGroup = game.add.group();
 
-    for(i = 0; i < randomNum(100)+50; i++){
+    for(i = 0; i < 1; i++){
         newPlanet(game);
     }
 
@@ -133,7 +133,7 @@ function create() {
     amoebas.callAll('play', null, 'jiggle');
 
     //  The score
-    scoreText = game.add.text(16, 16, 'Stars Gulped: 0', { fontSize: '32px', fill: '#FFF' });
+    scoreText = game.add.text(16, 16, 'Stars Gulped: 0', { fontSize: '32px', fill: '#000' });
     scoreText.fixedToCamera = true;
 
     //  Our controls.
@@ -150,7 +150,7 @@ function updateArcade() {
     //  Checks to see if the chicken overlaps with any of the stars, if he does call the collectStar function
     game.physics.arcade.overlap(chicken, stars, collectStar, null, this);
 //    game.physics.arcade.overlap(chicken, planetGroup, planetThing, null, this);
-    game.physics.arcade.overlap(chicken, amoebas, smackDown, null, this);
+//    game.physics.arcade.overlap(chicken, amoebas, smackDown, null, this);
 
 
     // Update planets and ensure wrapping
@@ -305,27 +305,54 @@ function newPlanet(game){
 
 }
 
+
     function screenWrap (sprite) {
+//
+//        game.debug.spriteBounds(sprite);
+//        game.debug.spriteInfo(sprite, 20, 32);
+//        game.debug.spriteCoords(sprite, 20, 100);
+//        game.debug.text("Velocity X " + sprite.body.velocity.x, 20, 450);
+//        game.debug.text("Velocity Y " + sprite.body.velocity.y, 20, 430);
+//
+//
+//        game.debug.text("World X " + game.world.width, 20, 480);
+//        game.debug.text("World Y " + game.world.height, 20, 500);
+//
+//        game.debug.cameraInfo(game.camera, 20, 170);
+//
+//        game.debug.text("Wrapping X " + (game.world.width + sprite.width + 5), 20, 320);
+//        game.debug.text("Wrapping X " + (0 - sprite.width - 5), 20, 340);
+//        game.debug.text("Wrapping Y " + (game.world.height + sprite.height + 5), 20, 300);
+//        game.debug.text("Wrapping Y " + (0 - sprite.height - 5), 20, 280);
 
-        if (sprite.body.position.x < 0 - sprite.width * 2 * sprite.scale)
+        if (sprite.body.position.x <= 0 )
         {
-            sprite.body.position.x = game.world.width + sprite.width * 1.1 * sprite.scale;
+//            game.debug.text("X", 10, 320);
+            sprite.body.position.x = game.world.width;
         }
-        else if (sprite.body.position.x > game.world.width + sprite.width * 2 * sprite.scale)
+        else if (sprite.body.position.x >= (game.world.width - sprite.width) )
         {
-            sprite.body.position.x = 0 - sprite.width * 1.1 * sprite.scale;
+//            game.debug.text("X", 10, 340);
+            sprite.body.position.x = 0;
         }
 
-        if (sprite.body.position.y < 0 - sprite.height * 2 * sprite.scale)
+        if (sprite.body.position.y <= 0  )
         {
-            sprite.body.position.y = game.world.height  + sprite.height * 1.1 * sprite.scale;
+//            game.debug.text("X", 10, 300);
+            sprite.body.position.y = game.world.height;
         }
-        else if (sprite.body.position.y > game.world.height + sprite.height * 2 * sprite.scale)
+        else if (sprite.body.position.y >= (game.world.width - sprite.height) )
         {
-            sprite.body.position.y = 0 - sprite.height * 1.1 * sprite.scale;
+//            game.debug.text("X", 10, 280);
+            sprite.body.position.y = 0;
         }
 
     }
+
+    function render(){
+
+    }
+
 </script>
 
 </body>
