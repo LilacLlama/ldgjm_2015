@@ -41,7 +41,7 @@
 var score = 0;
     
 function preload() {
-
+    
     for(i = 0; i < planetSprites.length; i++){
         game.load.spritesheet(planetSprites[i].sheet, planetSprites[i].assets, planetSprites[i].size, planetSprites[i].size);
     }
@@ -49,7 +49,8 @@ function preload() {
     game.load.image('star', 'assets/star.png');
     game.load.spritesheet('chicken', 'assets/chicken_spritesheet_75x90.png', 75, 90, 4, -5);
     game.load.audio('chickenmusic', 'assets/peg.mp3');
-    game.load.image('stars', 'assets/starsglow1.gif')
+    game.load.image('stars', 'assets/starsglow1.gif');
+    game.load.audio('gulp', 'assets/gulp.m4a');
 }
 
 function create() {
@@ -86,8 +87,11 @@ function create() {
 
     // Start the music!  Yes, we should make this optional, but hey... use your volume button.
     music = game.add.audio('chickenmusic');
+    music.volume -= 0.25;
     music.play();
     music.onStop.add(rePlay, this);
+    gulp = game.add.audio('gulp');
+    gulp.volume += 0.5;
 
 
     // The chicken and its settings
@@ -197,6 +201,8 @@ function collectStar (chicken, star) {
     //  Add and update the score
     score += 10;
     scoreText.text = 'Score: ' + score;
+    
+    gulp.play();
     
     stars.create(10+Math.random()*(game.world.width-20), 10+Math.random()*(game.world.height-20), 'star');
     
