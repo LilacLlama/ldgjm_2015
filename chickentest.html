@@ -38,7 +38,8 @@
     var planetGroup;
     var p2On = false;
 
-var score = 0;
+    var score = 0;
+    var getwell;
     
 function preload() {
     
@@ -113,6 +114,9 @@ function create() {
     chicken.animations.add('right', [0, 2], 10, true);
     chicken.animations.add('both', [1,2], 10, true);        
     chicken.anchor.set(0.5);   // So that the chicken rotates around its center, not its corner
+    
+    // In case the chicken gets sick
+    
     
 
     //  Finally some stars to collect
