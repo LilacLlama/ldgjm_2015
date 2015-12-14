@@ -2,7 +2,125 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da183926-267e-4800-a869-d4055439429a" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/_deployme/chickenpox.html" afterPath="$PROJECT_DIR$/_deployme/chickenpox.html" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/20091750824_1be544ac91_o.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/729223main_728322main_messenger_orbit_image20130218_2_full_full_full.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/Chicken Drawing 1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/Chicken Flapping Sprite/Chicken State L0R0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/Chicken Flapping Sprite/Chicken State L0R1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/Chicken Flapping Sprite/Chicken State L1R0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/Chicken Flapping Sprite/Chicken State L1R1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/Chicken Flapping Sprite/Chicken State Pox L0R0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/Chicken Flapping Sprite/Chicken State Pox L0R1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/Chicken Flapping Sprite/Chicken State Pox L1R0.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/Chicken Flapping Sprite/Chicken State Pox L1R1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/Chicken Flapping Sprite/chicken_spritesheet_600x400.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/Chicken Flapping Sprite/chicken_spritesheet_75x90.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/GIMP Originals/90 height sprite.xcf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/GIMP Originals/Full height sprite.xcf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/GIMP Originals/Master Chicken File.xcf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/GIMP Originals/Sully800x600background.xcf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/Sully800x600background.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Chicken Art/starsglow1.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/ajax_dlcount.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/apachesolr_sort.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/cc-by.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/compact_forms.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/drupal.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/facebook-24x24.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/google+-24x24.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/identica-24x24.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/image-x-generic.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/jquery.cookie.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/jquery.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/jquery.lightbox-0.5.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/jquery.once.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/lightbox-btn-close.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/lightbox-ico-loading.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/oga_theme.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/openid.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/preview-tiled background-space-by alpha rats(1).png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/preview-tiled background-space-by alpha rats.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/reddit-24x24.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/sara-logo.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Space - cartoony tiled texture - preview-tiled background-space-by alpha rats.png _ OpenGameArt.org_files/twitter-24x24.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/Amoeba_spritesheet_124x80x3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/Amoeba_spritesheet_467x301x3.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/ChickenFloatingThroughSpace.mp3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/Flap.m4a" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/Gulp.m4a" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/SplashScreen.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/Sully800x600background.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/birdflapping.mp3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/chicken_spritesheet_600x400.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/chicken_spritesheet_75x90.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/chipmonkey.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/dude.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/icon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/large_planets.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/med_planets.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/muted.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/peg.mp3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/platform.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/star.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/starsglow1.gif" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/taco_baby1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/teleport.mp3" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/volume.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/assets/volumeon.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/chickenpox.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/css/bootstrap-cyborg.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/css/game.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/js/bootstrap.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/js/bootstrap.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/js/game.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/js/jquery-2.1.1.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/js/phaser.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/_deployme/js/phaser.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/Background-0.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/Background-1.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/Background-2.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/Background-3.jpg" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/PixelPlanets.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/background-space-by-alpha-rats.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/baddie.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/diamond.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/firstaid.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/planet_background1.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/sky.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/assets/starstolen.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chicken_index.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chickentest.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chickentest2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chickentest3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/assets/Sully800x600background.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/assets/baddie.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/assets/chicken_spritesheet_600x400.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/assets/chicken_spritesheet_75x90.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/assets/diamond.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/assets/dude.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/assets/firstaid.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/assets/platform.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/assets/sky.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/assets/star.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/chickentest.0.0.1.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/chickentest.0.0.2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/js/phaser.min.js" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/mongoose-free-6.1.exe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/chiptest/xdk/project-info.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap-theme.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap-theme.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap-theme.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap.css.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/css/bootstrap.min.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/splashscreen.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test2.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test3.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test4.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test5.html" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="chickenpox.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -22,68 +140,7 @@
     <favorites_list name="chickenpox" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="chickentest.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chickentest.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-22.02">
-              <caret line="199" column="31" selection-start-line="199" selection-start-column="31" selection-end-line="199" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chicken_index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chicken_index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="88.565216">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chickenpox.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/_deployme/chickenpox.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.37848607">
-              <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test4.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test4.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-9.26087">
-              <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="96" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chickentest.0.0.1.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chiptest/chickentest.0.0.1.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="chickentest.0.0.2.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/chiptest/chickentest.0.0.2.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-14.478261">
-              <caret line="154" column="1" selection-start-line="154" selection-start-column="1" selection-end-line="154" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -162,48 +219,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chickenpox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chickenpox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chickenpox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chickenpox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chiptest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chickenpox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="chickenpox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="_deployme" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -277,10 +292,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1440" height="873" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1440" height="873" extended-state="0" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24305555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24305555" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
@@ -303,7 +318,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -322,102 +337,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.043478">
-          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.5652175">
-          <caret line="7" column="38" selection-start-line="7" selection-start-column="38" selection-end-line="7" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.086957">
-          <caret line="62" column="8" selection-start-line="62" selection-start-column="8" selection-end-line="62" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test5.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.5652175">
-          <caret line="47" column="76" selection-start-line="47" selection-start-column="76" selection-end-line="48" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chickentest2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.782608">
-          <caret line="92" column="34" selection-start-line="92" selection-start-column="34" selection-end-line="92" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chickentest3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chiptest/chickentest.0.0.1.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test4.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.26087">
-          <caret line="87" column="0" selection-start-line="87" selection-start-column="0" selection-end-line="96" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chiptest/chickentest.0.0.2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.478261">
-          <caret line="154" column="1" selection-start-line="154" selection-start-column="1" selection-end-line="154" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chickentest.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.02">
-          <caret line="199" column="31" selection-start-line="199" selection-start-column="31" selection-end-line="199" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/chicken_index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="88.565216">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/_deployme/chickenpox.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37848607">
-          <caret line="24" column="25" selection-start-line="24" selection-start-column="25" selection-end-line="24" selection-end-column="25" />
           <folding />
         </state>
       </provider>
